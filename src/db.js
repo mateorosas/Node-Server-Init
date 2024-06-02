@@ -10,10 +10,10 @@ import mysql from 'mysql';
   database: "customersdb",
 }); */
 export const pool = mysql.createConnection({
-  host     : process.env.RDS_HOSTNAME,
-  user     : process.env.RDS_USERNAME,
-  password : process.env.RDS_PASSWORD,
-  port     : process.env.RDS_PORT
+  host     : "",
+  user     : "admin",
+  password : "Admin1234*",
+  port     : 3306
 });
 
 pool.connect(function(err) {
