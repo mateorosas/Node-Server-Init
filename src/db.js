@@ -24,3 +24,11 @@ pool.getConnection(function(err) {
 
   console.log('Connected to database.');
 });
+
+export const connection = mysql.createConnection({
+  host     : "",
+  user     : "admin",
+  password : "Admin1234*",
+  port     : 3306,
+  database: "prod_db_priceless_app"
+});

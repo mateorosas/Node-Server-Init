@@ -1,12 +1,13 @@
-import { pool } from "../db.js";
+import { pool, connection } from "../db.js";
 
 export const renderCustomers = async (req, res) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM products");
+    const  rows  = await pool.query("SELECT * FROM products");
     const rowsWithoutCircular = removeCircularReferences(rows);
+    const [results] = rows._results; // Array of rows
     // Stringify the modified rows object
     console.log(JSON.stringify(rowsWithoutCircular));
-    res.render("customers", { customers: rows });
+    res.render("customers", { customers: results });
   } catch (error) {
     console.error("Error excecuting query:", error);
     res.status(500).send("Internal Server Error");
@@ -54,3 +55,16 @@ function removeCircularReferences(obj) {
     return value;
   }));
 }
+
+export const getProducts = async (req, res) => {
+  try {
+    connection.connect();
+    const result = await pool.query('SELECT * FROM products');
+    res.json(result.rows);
+    console.log(result.rows);
+    connection.end();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+};
