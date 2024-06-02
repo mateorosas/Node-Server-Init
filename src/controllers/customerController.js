@@ -1,16 +1,20 @@
 import { pool, connection } from "../db.js";
 
 export const renderCustomers = async (req, res) => {
-  try {
-    const  rows  = await pool.query("SELECT * FROM products");
-    const rowsWithoutCircular = removeCircularReferences(rows);
-    const [results] = rows._results; // Array of rows
-    // Stringify the modified rows object
-    console.log(JSON.stringify(rowsWithoutCircular));
-    res.render("customers", { customers: results });
-  } catch (error) {
-    console.error("Error excecuting query:", error);
-    res.status(500).send("Internal Server Error");
+try {
+//    connection.connect();
+ 
+connection.query('SELECT * FROM products', function (error, results, fields) {
+  if (error) throw error;
+  console.log('The solution is: ', results);
+	res.render("customers", { products: results });
+});
+ 
+//connection.end();
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
   }
 };
 
@@ -48,7 +52,7 @@ function removeCircularReferences(obj) {
   return JSON.parse(JSON.stringify(obj, (key, value) => {
     if (typeof value === 'object' && value !== null) {
       if (seen.has(value)) {
-        return '[Circular Reference]';
+        return '[Unkown value]';
       }
       seen.add(value);
     }
@@ -58,11 +62,11 @@ function removeCircularReferences(obj) {
 
 export const getProducts = async (req, res) => {
   try {
-    connection.connect();
+    //connection.connect();
     const result = await pool.query('SELECT * FROM products');
     res.json(result.rows);
     console.log(result.rows);
-    connection.end();
+    //connection.end();
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');

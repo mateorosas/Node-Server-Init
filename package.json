@@ -19,5 +19,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateorosas/Node-Server-Init.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mateorosas/Node-Server-Init/issues"
+  },
+  "homepage": "https://github.com/mateorosas/Node-Server-Init#readme"
 }
