@@ -14,8 +14,8 @@
     "mysql": "latest"
   },
   "scripts": {
-    "dev": "node --watch src/index.js",
-    "start": "node src/index.js"
+    "dev": "sudo node --watch src/index.js",
+    "start": "sudo node src/index.js"
   },
   "keywords": [],
   "author": "",

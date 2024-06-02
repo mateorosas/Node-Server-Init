@@ -1,8 +1,16 @@
 import { pool } from "../db.js";
 
 export const renderCustomers = async (req, res) => {
-  const [rows] = await pool.query("SELECT * FROM product");
-  res.render("products", { customers: rows });
+  try {
+    const { rows } = await pool.query("SELECT * FROM products");
+    const rowsWithoutCircular = removeCircularReferences(rows);
+    // Stringify the modified rows object
+    console.log(JSON.stringify(rowsWithoutCircular));
+    res.render("customers", { customers: rows });
+  } catch (error) {
+    console.error("Error excecuting query:", error);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 export const createCustomers = async (req, res) => {
@@ -34,3 +42,15 @@ export const deleteCustomer = async (req, res) => {
   }
   res.redirect("/");
 };
+function removeCircularReferences(obj) {
+  const seen = new WeakSet();
+  return JSON.parse(JSON.stringify(obj, (key, value) => {
+    if (typeof value === 'object' && value !== null) {
+      if (seen.has(value)) {
+        return '[Circular Reference]';
+      }
+      seen.add(value);
+    }
+    return value;
+  }));
+}
