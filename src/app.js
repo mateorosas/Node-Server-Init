@@ -3,6 +3,7 @@ import path from "path";
 import morgan from "morgan";
 
 import customerRoutes from "./routes/customer.routes.js";
+
 import { fileURLToPath } from "url";
 
 import dotenv from 'dotenv';
