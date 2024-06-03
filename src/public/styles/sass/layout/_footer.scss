@@ -4,6 +4,12 @@
     font-size: 1.4rem;
     color: $color-grey-light-1;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16rem;
+
     @include respond(tab-port){
         padding: 8rem 0;
     }

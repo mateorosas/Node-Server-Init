@@ -72,3 +72,15 @@ export const getProducts = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
+
+
+// src/imageUtils.js
+import { readdir } from 'fs/promises';
+import { join, extname } from 'path';
+
+export async function getImagePaths(directory) {
+  const files = await readdir(directory);
+  const imageFiles = files.filter(file => ['.jpg', '.jpeg', '.png', '.gif'].includes(extname(file).toLowerCase()));
+  return imageFiles.map(file => join(directory, file));
+}
