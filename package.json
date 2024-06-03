@@ -17,7 +17,7 @@
     "postcss-cli": "^10.1.0"
   },
   "scripts": {
-    "dev": "sudo node --watch src/index.js",
+    "dev": "npm-run-all --parallel build:css  && sudo node --watch src/index.js",
     "watch:sass": "node-sass src/public/styles/sass/main.scss src/public/styles/css/style.css -w",
     "devserver": "live-server",
     "start": "npm-run-all --parallel build:css && sudo node src/index.js",

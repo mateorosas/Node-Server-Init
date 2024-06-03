@@ -10,7 +10,7 @@ import mysql from 'mysql';
   database: "customersdb",
 }); */
 export const pool = mysql.createPool({
-  host     : "terraform-20240603164707948400000008.c9ws6cywempm.us-east-1.rds.amazonaws.com",
+  host     : "terraform-20240603194724813500000008.c9ws6cywempm.us-east-1.rds.amazonaws.com",
   user     : "admin",
   password : "Admin1234*",
   port     : 3306,
@@ -26,7 +26,7 @@ pool.getConnection(function(err) {
 });
 
 export const connection = mysql.createConnection({
-  host     : "terraform-20240603164707948400000008.c9ws6cywempm.us-east-1.rds.amazonaws.com",
+  host     : "terraform-20240603194724813500000008.c9ws6cywempm.us-east-1.rds.amazonaws.com",
   user     : "admin",
   password : "Admin1234*",
   port     : 3306,

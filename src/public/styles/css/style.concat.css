@@ -585,13 +585,13 @@ body {
 
 .header {
   height: 85vh;
-  background-image: linear-gradient(to right bottom, #7ed56fb1, #28b485), url("../../img/cultivo-y-cultivo-de-cebolla.jpg");
+  background-image: linear-gradient(to right bottom, #7ed56fb1, #28b485), url("/styles/img/cultivo-y-cultivo-de-cebolla.jpg");
   background-size: cover;
   background-position: top;
   position: relative; }
   @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 125em) {
     .header {
-      background-image: linear-gradient(to right bottom, #ffa50070, #28b485), url("../../img/cultivo-y-cultivo-de-cebolla.jpg"); } }
+      background-image: linear-gradient(to right bottom, #ffa50070, #28b485), url("/styles/img/cultivo-y-cultivo-de-cebolla.jpg"); } }
   .header__logo-box {
     position: absolute;
     top: 4rem;
@@ -601,15 +601,25 @@ body {
   .header__text-box {
     position: absolute;
     top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center; }
+    right: 35%;
+    text-align: left; }
+    @media only screen and (min-width: 112.5em) {
+      .header__text-box {
+        right: 35%; } }
+    @media only screen and (max-width: 75em) {
+      .header__text-box {
+        right: 17%; } }
 
 .footer {
   background-color: #333;
   padding: 10rem 0;
   font-size: 1.4rem;
-  color: #f7f7f7; }
+  color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16rem; }
   @media only screen and (max-width: 56.25em) {
     .footer {
       padding: 8rem 0; } }
@@ -901,11 +911,11 @@ body {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px; }
     .card__picture--1 {
-      background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(../../img/nat-5.jpg); }
+      background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(/styles/img/nat-5.jpg); }
     .card__picture--2 {
-      background-image: linear-gradient(to right bottom, #7ed56fb1, #28b485), url(../../img/nat-6.jpg); }
+      background-image: linear-gradient(to right bottom, #7ed56fb1, #28b485), url(/styles/img/nat-6.jpg); }
     .card__picture--3 {
-      background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(../../img/nat-7.jpg); }
+      background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(/styles/img/nat-7.jpg); }
   .card__heading {
     font-size: 2.8rem;
     font-weight: 300;
@@ -1055,4 +1065,4 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 16rem; }
+  gap: 5rem; }

@@ -24,10 +24,22 @@
     }
 
     &__text-box {
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
+         position: absolute;
+    top: 40%;
+    right: 35%;
+    text-align: left;
+@include respond(big-desktop){
+	right: 35%;
+}
+
+@include respond(tab-land) {
+     
+    right: 17%;
+
+    }
+
+
+
+
     }
 }
