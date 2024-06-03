@@ -20,7 +20,7 @@
     "dev": "sudo node --watch src/index.js",
     "watch:sass": "node-sass src/public/styles/sass/main.scss src/public/styles/css/style.css -w",
     "devserver": "live-server",
-    "start": "npm-run-all --parallel build:css && node src/index.js",
+    "start": "npm-run-all --parallel build:css && sudo node src/index.js",
     "compile:sass": "node-sass src/public/styles/sass/main.scss src/public/styles/css/style.comp.css",
     "concat:css": "concat -o src/public/styles/css/style.concat.css src/public/styles/css/icon-font.css src/public/styles/css/style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' src/public/styles/css/style.concat.css -o src/public/styles/css/style.prefix.css",
