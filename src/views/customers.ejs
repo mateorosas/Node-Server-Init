@@ -55,41 +55,6 @@
                       <% } %>
             </tbody>
           </table>
-
-          <table class="container_tables container_tables--2">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Tienda</th>
-                <th>ID de producto</th>
-                <th>Promedio Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if (pricesProducts && pricesProducts.length> 0) { %>
-                <% pricesProducts.forEach((product, index)=> { %>
-                  <tr>
-                    <td>
-                      <%= index + 1 %>
-                    </td>
-                    <td>
-                      <%= product.tienda %>
-                    </td>
-                    <td>
-                      <%= product.product_name %>
-                    </td>
-                    <td>
-                      <%= product.average_price %>
-                    </td>
-                  </tr>
-                  <% }) %>
-                    <% } else { %>
-                      <tr>
-                        <td colspan="10">No products found</td>
-                      </tr>
-                      <% } %>
-            </tbody>
-          </table>
         </div>
       </div>
 
