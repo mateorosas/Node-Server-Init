@@ -5,7 +5,7 @@
     -moz-perspective: 150rem;
     position: relative;
     height: 52rem;
-	width: 33rem;
+    width: 33rem;
 
     &__side {
         height: 52rem;
@@ -112,7 +112,18 @@
     }
 
     &__details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: center;
+        font-size: 1.6rem;
         padding: 3rem;
+
+        svg {
+            width: 71%;
+            max-height: 100%;
+            scale: 0.8;
+        }
 
         ul {
             list-style: none;
