@@ -54,7 +54,7 @@ export const priceByProduct = async (req, res) => {
       function (error, results, fields) {
         if (error) throw error;
         console.log('The solution is: ', results);
-        res.render("customers", { pricesProducts: results });
+        res.render("customers_edit", { pricesProducts: results });
       }
     );
   } catch (err) {
