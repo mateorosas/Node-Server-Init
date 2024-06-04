@@ -7,6 +7,7 @@ export const renderCustomers = async (req, res) => {
                   it.tienda,
                   p.id AS product_id,
                   p.nombre AS product_name,
+                  p.unidad AS unidad,
                   AVG(it.precio) AS average_price
                   FROM 
                   products p
@@ -15,9 +16,9 @@ export const renderCustomers = async (req, res) => {
                   JOIN 
                   items_tiendas it ON i.id = it.item_id
                   GROUP BY 
-                  it.tienda, p.id, p.nombre
+                  it.tienda, p.id, p.nombre, p.unidad
                   ORDER BY 
-                  it.tienda, p.nombre;`,
+                  average_price,  p.nombre, it.tienda;`,
       function (error, results, fields) {
         if (error) throw error;
         res.render("customers", { products: results });
@@ -37,7 +38,7 @@ export const priceByProduct = async (req, res) => {
           it.tienda,
           p.id AS product_id,
           p.nombre AS product_name,
-          p.unidad AS unidad
+          p.unidad AS unidad,
           AVG(it.precio) AS average_price
       FROM 
           products p
