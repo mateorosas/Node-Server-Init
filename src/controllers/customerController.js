@@ -30,13 +30,14 @@ export const renderCustomers = async (req, res) => {
 
 export const priceByProduct = async (req, res) => {
   try {
-    const nameProduct = req.query.nameProduct; // Assuming the product name is passed as a URL parameter
+    const nameProduct = req.query.nameProduct; 
 
     connection.query(
       `SELECT 
           it.tienda,
           p.id AS product_id,
           p.nombre AS product_name,
+          p.unidad AS unidad
           AVG(it.precio) AS average_price
       FROM 
           products p
@@ -47,7 +48,7 @@ export const priceByProduct = async (req, res) => {
       WHERE 
           p.nombre = ?
       GROUP BY 
-          it.tienda, p.id, p.nombre
+          it.tienda, p.id, p.nombre, p.unidad
       ORDER BY 
           it.tienda, p.nombre;`,
       [nameProduct],
