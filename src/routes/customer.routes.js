@@ -11,7 +11,7 @@ import {
 const router = Router();
 
 router.get("/", renderCustomers);
-router.get("/", priceByProduct);
+router.get("/pro", priceByProduct);
 router.post("/add", createCustomers);
 router.get("/update/:id", editCustomer);
 router.post("/update/:id", updateCustomer);
