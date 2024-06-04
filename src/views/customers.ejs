@@ -56,93 +56,44 @@
             </tbody>
           </table>
 
-          <div class="results">
-
-          </div>
+          <table class="container_tables container_tables--2">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tienda</th>
+                <th>ID de producto</th>
+                <th>Promedio Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (pricesProducts && pricesProducts.length> 0) { %>
+                <% pricesProducts.forEach((product, index)=> { %>
+                  <tr>
+                    <td>
+                      <%= index + 1 %>
+                    </td>
+                    <td>
+                      <%= product.tienda %>
+                    </td>
+                    <td>
+                      <%= product.product_name %>
+                    </td>
+                    <td>
+                      <%= product.average_price %>
+                    </td>
+                  </tr>
+                  <% }) %>
+                    <% } else { %>
+                      <tr>
+                        <td colspan="10">No products found</td>
+                      </tr>
+                      <% } %>
+            </tbody>
+          </table>
         </div>
       </div>
 
     </nav>
   </div>
-
-  <script type="text/javascript" async>
-    document.addEventListener('DOMContentLoaded', () => {
-      const input = document.getElementById('pac-input');
-      const button = document.getElementById('search--button');
-      const resultDiv = document.getElementById('results');
-
-
-      const fetchProductData = async (productName) => {
-        try {
-          const response = await fetch(`/?nameProduct=${encodeURIComponent(productName)}`);
-          if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-          }
-          const data = await response.json();
-          displayResults(data);
-        } catch (error) {
-          console.error('There was a problem with the fetch operation:', error);
-          resultDiv.textContent = 'Error fetching data';
-        }
-      };
-
-      const displayResults = (data) => {
-        if (!data || data.length === 0) {
-          resultDiv.innerHTML = '<p>No products found</p>';
-          return;
-        }
-
-        let tableHTML = `
-            <table class="container_tables container_tables--2">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Tienda</th>
-                        <th>ID de producto</th>
-                        <th>Promedio Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
-
-        data.forEach((product, index) => {
-          tableHTML += `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${product.tienda}</td>
-                    <td>${product.product_name}</td>
-                    <td>${product.average_price}</td>
-                </tr>
-            `;
-        });
-
-        tableHTML += `
-                </tbody>
-            </table>
-        `;
-
-        resultDiv.innerHTML = tableHTML;
-      };
-
-      const handleSubmit = () => {
-        const productName = input.value.trim();
-        if (productName) {
-          fetchProductData(productName);
-        } else {
-          resultDiv.textContent = 'Please enter a product name';
-        }
-      };
-
-      button.addEventListener('click', handleSubmit);
-
-      input.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-          event.preventDefault(); // Prevent form submission
-          handleSubmit();
-        }
-      });
-    });
-
-  </script>
 
   <%- include("partials/_footer") %>
