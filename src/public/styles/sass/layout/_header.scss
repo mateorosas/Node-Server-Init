@@ -4,11 +4,11 @@
     background-size: cover;
     background-position: top;
     position: relative;
-    
+
 
     @media only screen and (min-resolution: 192dpi) and (min-width:37.5em),
-            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width:37.5em),
-            only screen and (min-width:125em) {
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width:37.5em),
+    only screen and (min-width:125em) {
         background-image: linear-gradient(to right bottom, #ffa50070, $color-primary-dark), url("/styles/img/cultivo-y-cultivo-de-cebolla.jpg");
 
     }
@@ -24,19 +24,20 @@
     }
 
     &__text-box {
-         position: absolute;
-    top: 40%;
-    right: 35%;
-    text-align: left;
-@include respond(big-desktop){
-	right: 35%;
-}
+        position: absolute;
+        top: 40%;
+        right: 35%;
+        text-align: left;
 
-@include respond(tab-land) {
-     
-    right: 17%;
+        @include respond(big-desktop) {
+            right: 35%;
+        }
 
-    }
+        @include respond(tab-land) {
+
+            right: 17%;
+
+        }
 
 
 

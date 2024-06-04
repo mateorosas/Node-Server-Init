@@ -1,17 +1,62 @@
 import { pool, connection } from "../db.js";
 
+
 export const renderCustomers = async (req, res) => {
-try {
-//    connection.connect();
- 
-connection.query('SELECT * FROM products', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results);
-	res.render("customers", { products: results });
-});
- 
-//connection.end();
-    
+  try {
+    connection.query(`SELECT 
+                  it.tienda,
+                  p.id AS product_id,
+                  p.nombre AS product_name,
+                  AVG(it.precio) AS average_price
+                  FROM 
+                  products p
+                  JOIN 
+                  items i ON p.id = i.product_id
+                  JOIN 
+                  items_tiendas it ON i.id = it.item_id
+                  GROUP BY 
+                  it.tienda, p.id, p.nombre
+                  ORDER BY 
+                  it.tienda, p.nombre;`,
+      function (error, results, fields) {
+        if (error) throw error;
+        res.render("customers", { products: results });
+      });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+};
+
+export const priceByProduct = async (req, res) => {
+  try {
+    const nameProduct = req.query.nameProduct; // Assuming the product name is passed as a URL parameter
+
+    connection.query(
+      `SELECT 
+          it.tienda,
+          p.id AS product_id,
+          p.nombre AS product_name,
+          AVG(it.precio) AS average_price
+      FROM 
+          products p
+      JOIN 
+          items i ON p.id = i.product_id
+      JOIN 
+          items_tiendas it ON i.id = it.item_id
+      WHERE 
+          p.nombre = ?
+      GROUP BY 
+          it.tienda, p.id, p.nombre
+      ORDER BY 
+          it.tienda, p.nombre;`,
+      [nameProduct],
+      function (error, results, fields) {
+        if (error) throw error;
+        console.log('The solution is: ', results);
+        res.render("customers", { pricesProducts: results });
+      }
+    );
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');

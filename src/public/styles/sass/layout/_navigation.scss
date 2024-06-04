@@ -61,6 +61,16 @@
         width: 0;
 
         transition: all .8s cubic-bezier(0.65, -0.55, 0.265, 1.55);
+    
+        .container-data{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 0 auto;
+            width: 83.3333%;
+            padding-top: 8rem;
+            padding-bottom: 10rem;
+        }
     }
 
     &__list {

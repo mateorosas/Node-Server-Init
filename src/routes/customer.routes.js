@@ -5,11 +5,13 @@ import {
   editCustomer,
   renderCustomers,
   updateCustomer,
-  getProducts
+  getProducts,
+  priceByProduct
 } from "../controllers/customerController.js";
 const router = Router();
 
 router.get("/", renderCustomers);
+router.get("/", priceByProduct);
 router.post("/add", createCustomers);
 router.get("/update/:id", editCustomer);
 router.post("/update/:id", updateCustomer);
